@@ -68,20 +68,20 @@ def renomear_pdf(arquivo_pdf: str, novo_nome_pdf: str) -> bool:
 
 
 if __name__ == "__main__":
-    qtde: int = 0
-    pasta: str = "./arquivos_pdf/"
+    quantidade_arquivo_renomeado: int = 0
+    pasta_com_arquivos_pdf: str = "./arquivos_pdf/"
     print("Salvando arquivos PDF como o novo nome ...")
-    caminhos = [os.path.join(pasta, nome) for nome in os.listdir(pasta)]
+    caminhos = [os.path.join(pasta_com_arquivos_pdf, nome) for nome in os.listdir(pasta_com_arquivos_pdf)]
     arquivos = [arq for arq in caminhos if os.path.isfile(arq)]
     
     for nome_com_caminho in arquivos:
         try:
             arquivo_pdf = abrir_arquivo_pdf(nome_com_caminho)
             nome = localizar_texto(arquivo_pdf=arquivo_pdf)
-            novo_nome_pdf = f"{pasta}CONTROLE DE FREQUENCIA - {nome}.pdf"
+            novo_nome_pdf = f"{pasta_com_arquivos_pdf}CONTROLE DE FREQUENCIA - {nome}.pdf"
             arquivo_pdf.close()
             renomear_pdf(nome_com_caminho, novo_nome_pdf) 
-            qtde+=1
+            quantidade_arquivo_renomeado+=1
         except:
             print("Erro")
-        print(f"{qtde} arquivo(s) salvo(s).")
+        print(f"{quantidade_arquivo_renomeado} arquivo(s) salvo(s).")
